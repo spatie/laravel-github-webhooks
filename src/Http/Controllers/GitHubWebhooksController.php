@@ -2,13 +2,13 @@
 
 namespace Spatie\GitHubWebhooks\Http\Controllers;
 
+use function config;
 use Illuminate\Http\Request;
+use function response;
 use Spatie\GitHubWebhooks\GitHubSignatureValidator;
 use Spatie\WebhookClient\Models\WebhookCall;
 use Spatie\WebhookClient\WebhookConfig;
 use Spatie\WebhookClient\WebhookProcessor;
-use function config;
-use function response;
 
 class GitHubWebhooksController
 {
