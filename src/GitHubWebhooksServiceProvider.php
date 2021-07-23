@@ -2,9 +2,9 @@
 
 namespace Spatie\GitHubWebhooks;
 
+use Spatie\GitHubWebhooks\Commands\GitHubWebhooksCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Spatie\GitHubWebhooks\Commands\GitHubWebhooksCommand;
 
 class GitHubWebhooksServiceProvider extends PackageServiceProvider
 {
