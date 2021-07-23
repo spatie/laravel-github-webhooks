@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Spatie\GitHubWebhooks\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class GitHubWebhooksCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-github-webhooks';
 
     public $description = 'My command';
 
