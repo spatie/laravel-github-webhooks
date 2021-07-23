@@ -7,7 +7,7 @@
 ![Check & fix styling](https://github.com/spatie/laravel-github-webhooks/workflows/Check%20&%20fix%20styling/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-github-webhooks.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-github-webhooks)
 
-[GitHub](https://github.com) can notify your application of events using webhooks. This package can help you handle
+GitHub can notify your application of events using webhooks. This package can help you handle
 those webhooks. 
 
 Out of the box, it will verify the GitHub signature of all incoming requests. All valid calls will be
