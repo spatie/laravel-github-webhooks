@@ -1,3 +1,5 @@
+**DO NOT USE YET, PACKAGE IN DEVELOPMENT**
+
 # Handle GitHub Webhooks in a Laravel application
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-github-webhooks.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-github-webhooks)
@@ -8,7 +10,35 @@
 [GitHub](https://github.com) can notify your application of events using webhooks. This package can help you handle
 those webhooks. Out of the box, it will verify the GitHub signature of all incoming requests. All valid calls will be
 logged to the database. You can easily define jobs or events that should be dispatched when specific webhooks hit your
-app.
+app. Here's an example of such a job.
+
+```php
+namespace App\Jobs\GitHubWebhooks;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
+
+class HandleIssueOpenedWebhookJob implements ShouldQueue
+{
+    use InteractsWithQueue, Queueable, SerializesModels;
+
+    public GitHubWebhookCall $gitHubWebhookCall;
+
+    public function __construct(
+        public GitHubWebhookCall $webhookCall
+    ) {}
+
+    public function handle()
+    {
+        // React to the issue opened at GitHub event here
+
+        // You can access the payload of the GitHub webhook call with `$this->webhookCall->payload`
+    }
+}
+```
 
 Before using this package we highly recommend
 reading [the entire documentation on webhooks over at GitHub](https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks).
