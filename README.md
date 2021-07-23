@@ -8,9 +8,13 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-github-webhooks.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-github-webhooks)
 
 [GitHub](https://github.com) can notify your application of events using webhooks. This package can help you handle
-those webhooks. Out of the box, it will verify the GitHub signature of all incoming requests. All valid calls will be
+those webhooks. 
+
+Out of the box, it will verify the GitHub signature of all incoming requests. All valid calls will be
 logged to the database. You can easily define jobs or events that should be dispatched when specific webhooks hit your
-app. Here's an example of such a job.
+app. 
+
+Here's an example of such a job.
 
 ```php
 namespace App\Jobs\GitHubWebhooks;
