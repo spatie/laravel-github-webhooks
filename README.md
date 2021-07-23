@@ -11,7 +11,7 @@
 those webhooks. 
 
 Out of the box, it will verify the GitHub signature of all incoming requests. All valid calls will be
-logged to the database. You can easily define jobs or events that should be dispatched when specific webhooks hit your
+logged to the database. The package allows you to easily define jobs or events that should be dispatched when specific webhooks hit your
 app. 
 
 Here's an example of such a job.
