@@ -3,15 +3,13 @@
 namespace Spatie\GitHubWebhooks\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use Spatie\GitHubWebhooks\Exceptions\WebhookFailed;
 use Spatie\GitHubWebhooks\GitHubSignatureValidator;
 use Spatie\WebhookClient\Exceptions\InvalidWebhookSignature;
-use Spatie\WebhookClient\Models\WebhookCall;
 use Spatie\WebhookClient\WebhookConfig;
 use Spatie\WebhookClient\WebhookProcessor;
 use Symfony\Component\HttpFoundation\Response;
-use function config;
-use function response;
 
 class GitHubWebhooksController
 {

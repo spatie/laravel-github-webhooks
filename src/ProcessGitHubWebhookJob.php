@@ -2,14 +2,14 @@
 
 namespace Spatie\GitHubWebhooks;
 
-use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
 use Spatie\GitHubWebhooks\Exceptions\WebhookFailed;
+use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
 use Spatie\WebhookClient\Models\WebhookCall;
 use Spatie\WebhookClient\ProcessWebhookJob;
 
 class ProcessGitHubWebhookJob extends ProcessWebhookJob
 {
-    public GitHubWebhookCall|WebhookCall $webhookCall;
+    public GitHubWebhookCall | WebhookCall $webhookCall;
 
     public function handle()
     {
@@ -24,10 +24,10 @@ class ProcessGitHubWebhookJob extends ProcessWebhookJob
             })
             ->filter()
             ->each(function (string $jobClassName) {
-                if (!class_exists($jobClassName)) {
+                if (! class_exists($jobClassName)) {
                     throw WebhookFailed::jobClassDoesNotExist($jobClassName, $this->webhookCall);
                 }
             })
-            ->each(fn(string $jobClassName) => dispatch(new $jobClassName($this->webhookCall)));
+            ->each(fn (string $jobClassName) => dispatch(new $jobClassName($this->webhookCall)));
     }
 }
