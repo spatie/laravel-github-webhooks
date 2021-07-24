@@ -2,6 +2,7 @@
 
 namespace Spatie\GitHubWebhooks\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Spatie\WebhookClient\Models\WebhookCall;
 
@@ -13,7 +14,7 @@ class GitHubWebhookCall extends WebhookCall
 
     public function eventName(): string
     {
-        return $this->webhookCall->headerBag()->get('X-GitHub-Event') ?? '';
+        return $this->headerBag()->get('X-GitHub-Event') ?? '';
     }
 
     public function eventActionName(): string
@@ -27,7 +28,7 @@ class GitHubWebhookCall extends WebhookCall
         return "{$this->eventName()}.$actionName";
     }
 
-    public function prunable()
+    public function prunable(): Builder
     {
         $pruneAfterDays = config('github-webhooks.prune_webhook_calls_after_days');
 

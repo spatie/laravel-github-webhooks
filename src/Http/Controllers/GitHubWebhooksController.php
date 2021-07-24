@@ -3,10 +3,13 @@
 namespace Spatie\GitHubWebhooks\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\GitHubWebhooks\Exceptions\WebhookFailed;
 use Spatie\GitHubWebhooks\GitHubSignatureValidator;
+use Spatie\WebhookClient\Exceptions\InvalidWebhookSignature;
 use Spatie\WebhookClient\Models\WebhookCall;
 use Spatie\WebhookClient\WebhookConfig;
 use Spatie\WebhookClient\WebhookProcessor;
+use Symfony\Component\HttpFoundation\Response;
 use function config;
 use function response;
 
@@ -20,15 +23,19 @@ class GitHubWebhooksController
             'signature_header_name' => 'X-Hub-Signature-256',
             'signature_validator' => GitHubSignatureValidator::class,
             'webhook_profile' => config('github-webhooks.profile'),
-            'webhook_model' => WebhookCall::class,
-            'process_webhook_job' => config('github-webhooks.model'),
+            'webhook_model' => config('github-webhooks.model'),
+            'process_webhook_job' => config('github-webhooks.job'),
             'store_headers' => [
                 'X-GitHub-Event',
                 'X-GitHub-Delivery',
             ],
         ]);
 
-        (new WebhookProcessor($request, $webhookConfig))->process();
+        try {
+            (new WebhookProcessor($request, $webhookConfig))->process();
+        } catch (InvalidWebhookSignature) {
+            abort(Response::HTTP_FORBIDDEN);
+        }
 
         return response()->json(['message' => 'ok']);
     }

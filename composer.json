@@ -18,6 +18,7 @@
     "require": {
         "php": "^8.0",
         "illuminate/contracts": "^8.37",
+        "pestphp/pest": "^1.11",
         "spatie/laravel-package-tools": "^1.9.0",
         "spatie/laravel-webhook-client": "v3.x-dev"
     },

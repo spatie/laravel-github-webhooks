@@ -10,6 +10,9 @@ class GitHubSignatureValidator implements SignatureValidator
 {
     public function isValid(Request $request, WebhookConfig $config): bool
     {
+        $decoded = json_decode($request->getContent(), true);
+        ray( $request->getContent(), $request->all(), $decoded);
+
         if (! config('github-webhooks.verify_signature')) {
             return true;
         }
@@ -25,7 +28,6 @@ class GitHubSignatureValidator implements SignatureValidator
         if (empty($signingSecret)) {
             return false;
         }
-
         $computedSignature = hash_hmac('sha256', $request->getContent(), $signingSecret);
 
         return hash_equals($signature, $computedSignature);

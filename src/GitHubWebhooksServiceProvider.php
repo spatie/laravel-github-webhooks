@@ -13,7 +13,8 @@ class GitHubWebhooksServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('laravel-github-webhooks')
-            ->hasConfigFile();
+            ->hasConfigFile()
+            ->hasMigration('create_github_webhook_calls');
     }
 
     public function bootingPackage()
