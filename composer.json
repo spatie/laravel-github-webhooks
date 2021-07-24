@@ -18,7 +18,6 @@
     "require": {
         "php": "^8.0",
         "illuminate/contracts": "^8.37",
-        "pestphp/pest": "^1.11",
         "spatie/laravel-package-tools": "^1.9.0",
         "spatie/laravel-webhook-client": "v3.x-dev"
     },
@@ -26,7 +25,7 @@
         "brianium/paratest": "^6.3",
         "nunomaduro/collision": "^5.5",
         "orchestra/testbench": "^6.19",
-        "phpunit/phpunit": "^9.3",
+        "pestphp/pest": "^1.11",
         "spatie/laravel-ray": "^1.23"
     },
     "autoload": {
