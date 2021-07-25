@@ -4,6 +4,7 @@ namespace Spatie\GitHubWebhooks\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
+use Illuminate\Support\Arr;
 use Spatie\WebhookClient\Models\WebhookCall;
 
 class GitHubWebhookCall extends WebhookCall
@@ -19,7 +20,7 @@ class GitHubWebhookCall extends WebhookCall
 
     public function eventActionName(): string
     {
-        $actionName = $this->payload['action'] ?? null;
+        $actionName = $this->payload('action') ?? null;
 
         if (! $actionName) {
             return $this->eventName();
@@ -28,9 +29,15 @@ class GitHubWebhookCall extends WebhookCall
         return "{$this->eventName()}.$actionName";
     }
 
-    public function payload(): array
+    public function payload(string $key = null): mixed
     {
-        return json_decode($this->payload['payload'], true);
+        $payload = json_decode($this->payload['payload'], true);
+
+        if (! is_null($key)) {
+            return Arr::get($payload, $key);
+        }
+
+        return $payload;
     }
 
     public function prunable(): Builder
