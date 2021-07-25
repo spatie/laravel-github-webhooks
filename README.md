@@ -283,6 +283,18 @@ requests. This allows you to handle more GitHub webhook requests and avoid timeo
 The above example is only one way to handle events in Laravel. To learn the other options,
 read [the Laravel documentation on handling events](https://laravel.com/docs/5.5/events).
 
+## Deleting processed webhooks
+
+The `Spatie\GitHubWebhooks\Models\GitHubWebhookCall` is [`MassPrunable`](https://laravel.com/docs/8.x/eloquent#mass-pruning). To delete all processed webhooks every day you can schedule this command.
+
+```php
+$schedule->command('model:prune', [
+    '--model' => [\Spatie\GitHubWebhooks\Models\GitHubWebhookCall::class],
+])->daily();
+```
+
+All models that are older than the specified amount of days in the `prune_webhook_calls_after_days` key of the `github-webhooks` config file will be deleted.
+
 ## Advanced usage
 
 ### Retry handling a webhook
