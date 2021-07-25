@@ -9,7 +9,8 @@ class HandleIssueClosedWebhookJob implements ShouldQueue
 {
     public function __construct(
         public GitHubWebhookCall $webhookCall
-    ) {}
+    ) {
+    }
 
     public function handle()
     {
