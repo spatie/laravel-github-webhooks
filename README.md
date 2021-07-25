@@ -292,10 +292,10 @@ handling a webhook call. You can easily retry processing the webhook call, after
 of failure, like this:
 
 ```php
-use Spatie\WebhookClient\Models\WebhookCall;
+use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
 use Spatie\GitHubWebhooks\ProcessGitHubWebhookJob;
 
-dispatch(new ProcessGitHubWebhookJob(WebhookCall::find($id)));
+dispatch(new ProcessGitHubWebhookJob(GitHubWebhookCall::find($id)));
 ```
 
 ### Performing custom logic

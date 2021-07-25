@@ -4,6 +4,7 @@ namespace Spatie\GitHubWebhooks\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\GitHubWebhooks\GitHubWebhooksServiceProvider;
+use Spatie\LaravelRay\RayServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -11,6 +12,7 @@ class TestCase extends Orchestra
     {
         return [
             GitHubWebhooksServiceProvider::class,
+            RayServiceProvider::class,
         ];
     }
 

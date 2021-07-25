@@ -19,7 +19,7 @@ class GitHubWebhookCall extends WebhookCall
 
     public function eventActionName(): string
     {
-        $actionName = $this->webhookCall['payload']['action'] ?? null;
+        $actionName = $this->payload['action'] ?? null;
 
         if (! $actionName) {
             return $this->eventName();
