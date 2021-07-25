@@ -31,7 +31,7 @@ class GitHubWebhooksController
         try {
             (new WebhookProcessor($request, $webhookConfig))->process();
         } catch (InvalidWebhookSignature) {
-            abort(Response::HTTP_FORBIDDEN);
+            return response()->json(['message' => 'invalid signature'], Response::HTTP_FORBIDDEN);
         }
 
         return response()->json(['message' => 'ok']);
