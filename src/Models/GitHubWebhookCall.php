@@ -28,6 +28,11 @@ class GitHubWebhookCall extends WebhookCall
         return "{$this->eventName()}.$actionName";
     }
 
+    public function payload(): array
+    {
+        return json_decode($this->payload['payload'], true);
+    }
+
     public function prunable(): Builder
     {
         $pruneAfterDays = config('github-webhooks.prune_webhook_calls_after_days');
