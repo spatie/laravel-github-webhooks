@@ -10,6 +10,7 @@ it('will prune records after the configured amount of days', function () {
 
     GitHubWebhookCall::create([
         'name' => 'dummy name',
+        'url' => 'https://example.com',
     ]);
 
     testTime()->addDays(5)->subSecond();
