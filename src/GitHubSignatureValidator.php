@@ -3,6 +3,7 @@
 namespace Spatie\GitHubWebhooks;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Spatie\WebhookClient\SignatureValidator\SignatureValidator;
 use Spatie\WebhookClient\WebhookConfig;
 
@@ -14,7 +15,9 @@ class GitHubSignatureValidator implements SignatureValidator
             return true;
         }
 
-        $signature = $request->header($config->signatureHeaderName);
+        $signatureHeaderContent = $request->header($config->signatureHeaderName);
+
+        $signature = Str::after($signatureHeaderContent, 'sha256=');
 
         if (! $signature) {
             return false;
