@@ -37,7 +37,7 @@ class HandleIssueOpenedWebhookJob implements ShouldQueue
     {
         // React to the issue opened at GitHub event here
 
-        // You can access the payload of the GitHub webhook call with `$this->webhookCall->payload`
+        // You can access the payload of the GitHub webhook call with `$this->webhookCall->payload()`
     }
 }
 ```
