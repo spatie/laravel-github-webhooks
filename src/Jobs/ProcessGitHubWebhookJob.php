@@ -2,14 +2,13 @@
 
 namespace Spatie\GitHubWebhooks\Jobs;
 
-use Spatie\GitHubWebhooks\Exceptions\JobClassDoesNotExist;
-use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
-use Spatie\WebhookClient\Exceptions\InvalidConfig;
-use Spatie\WebhookClient\Models\WebhookCall;
-use Spatie\WebhookClient\ProcessWebhookJob;
 use function collect;
 use function dispatch;
 use function event;
+use Spatie\GitHubWebhooks\Exceptions\JobClassDoesNotExist;
+use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
+use Spatie\WebhookClient\Models\WebhookCall;
+use Spatie\WebhookClient\ProcessWebhookJob;
 
 class ProcessGitHubWebhookJob extends ProcessWebhookJob
 {
