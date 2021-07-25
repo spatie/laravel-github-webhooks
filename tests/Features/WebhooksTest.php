@@ -3,11 +3,13 @@
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Route;
 use Spatie\GitHubWebhooks\Exceptions\JobClassDoesNotExist;
+use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
 use Spatie\GitHubWebhooks\Tests\TestClasses\HandleAllIssuesWebhookJob;
 use Spatie\GitHubWebhooks\Tests\TestClasses\HandleAllWebhooksJob;
 use Spatie\GitHubWebhooks\Tests\TestClasses\HandleIssueClosedWebhookJob;
 use Spatie\GitHubWebhooks\Tests\TestClasses\HandleIssueCreatedWebhookJob;
 use Spatie\GitHubWebhooks\Tests\TestClasses\HandlePingWebhookJob;
+use Symfony\Component\HttpFoundation\HeaderBag;
 
 beforeEach(function () {
     Route::githubWebhooks('webhooks');
@@ -134,3 +136,34 @@ it('will throw an exception when a non-existing job class is used', function () 
 
     $this->postJson('webhooks', $payload, addSignature($payload, $headers));
 })->throws(JobClassDoesNotExist::class);
+
+it('will store a model on a successful webhook request', function() {
+    $headers = ['X-GitHub-Event' => 'issues'];
+
+    $payload = preparePayload([
+        'action' => 'opened',
+        'deeply' => ['nested' => 'value']
+    ]);
+
+    $this
+        ->postJson('webhooks', $payload, addSignature($payload, $headers))
+        ->assertSuccessful();
+
+    expect(GitHubWebhookCall::count())->toBe(1);
+
+    /** @var GitHubWebhookCall $gitHubWebhookCall */
+    $gitHubWebhookCall = GitHubWebhookCall::first();
+
+    expect($gitHubWebhookCall->eventActionName())->toBe('issues.opened');
+    expect($gitHubWebhookCall->eventName())->toBe('issues');
+    expect($gitHubWebhookCall->payload())->toBe([
+        'action' => 'opened',
+        'deeply' => ['nested' => 'value']
+    ]);
+    expect($gitHubWebhookCall->payload('deeply.nested'))->toBe('value');
+    expect($gitHubWebhookCall->headers())->toBeInstanceOf(HeaderBag::class);
+    expect($gitHubWebhookCall->headers()->get('X-GitHub-Event'))->toBe('issues');
+
+
+});
+
