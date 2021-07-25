@@ -17,10 +17,13 @@ return [
      *
      * You can find a list of GitHub webhook types here:
      * https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads.
+     *
+     * You can use "*" to let a job handle all sent webhook types
      */
     'jobs' => [
         // 'ping' => \App\Jobs\GitHubWebhooks\HandlePingWebhook::class,
         // 'issues.opened' => \App\Jobs\GitHubWebhooks\HandleIssueOpenedWebhookJob::class,
+        // '*' => \App\Jobs\GitHubWebhooks\HandleAllWebhooks::class
     ],
 
     /*

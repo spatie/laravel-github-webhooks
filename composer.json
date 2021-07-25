@@ -19,7 +19,7 @@
         "php": "^8.0",
         "illuminate/contracts": "^8.37",
         "spatie/laravel-package-tools": "^1.9.0",
-        "spatie/laravel-webhook-client": "^3.0"
+        "spatie/laravel-webhook-client": "^3.0.1"
     },
     "require-dev": {
         "nunomaduro/collision": "^5.5",

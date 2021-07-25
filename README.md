@@ -92,10 +92,13 @@ return [
      *
      * You can find a list of GitHub webhook types here:
      * https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads.
+     * 
+     * You can use "*" to let a job handle all sent webhook types
      */
     'jobs' => [
         // 'ping' => \App\Jobs\GitHubWebhooks\HandlePingWebhook::class,
-        // 'issues.opened' => \App\Jobs\GitHubWebhooks\HandleIssueOpenedWebhook::class,
+        // 'issues.opened' => \App\Jobs\GitHubWebhooks\HandleIssueOpenedWebhookJob::class,
+        // '*' => \App\Jobs\GitHubWebhooks\HandleAllWebhooks::class
     ],
 
     /*
@@ -232,6 +235,14 @@ by `_`. The value should be the fully qualified classname.
     'issues.opened' => \App\Jobs\GitHubWebhooks\HandleIssueOpenedWebhookJob::class,
 ],
 ```
+
+### Working with a `GitHubWebhookCall` model
+
+The `Spatie\GitHubWebhooks\Models\GitHubWebhookCall` model contains some handy methods:
+
+- `payload()`: returns the payload of the webhook as an array
+- `headers()`: returns an instance of `Symfony\Component\HttpFoundation\HeaderBag` containing all headers used on the request
+- `eventActionName()`: returns the event name and action name of a webhooks, for example `issues.opened`
 
 ### Handling webhook requests using events
 

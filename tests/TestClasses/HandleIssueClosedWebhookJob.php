@@ -7,7 +7,11 @@ use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
 
 class HandleIssueClosedWebhookJob implements ShouldQueue
 {
-    public function handle(GitHubWebhookCall $webhookCall)
+    public function __construct(
+        public GitHubWebhookCall $webhookCall
+    ) {}
+
+    public function handle()
     {
     }
 }

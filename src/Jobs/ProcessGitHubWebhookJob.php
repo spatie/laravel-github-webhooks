@@ -20,13 +20,16 @@ class ProcessGitHubWebhookJob extends ProcessWebhookJob
 
         collect(config('github-webhooks.jobs'))
             ->filter(function (string $jobClassName, $eventActionName) {
+                if ($eventActionName === '*') {
+                    return true;
+                }
+
                 return in_array($eventActionName, [
                     $this->webhookCall->eventName(),
                     $this->webhookCall->eventActionName(),
                 ]);
             })
             ->filter()
-            ->ray()
             ->each(function (string $jobClassName) {
                 if (! class_exists($jobClassName)) {
                     throw JobClassDoesNotExist::make($jobClassName);
