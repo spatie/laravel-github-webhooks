@@ -20,7 +20,7 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        $migration = include __DIR__ . '/../database/migrations/create_github_webhook_calls_table.stub.php';
+        $migration = include __DIR__ . '/../database/migrations/create_github_webhook_calls_table.php.stub';
 
         $migration->up();
     }
