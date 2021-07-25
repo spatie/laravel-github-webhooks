@@ -12,10 +12,8 @@ class ProcessGitHubWebhookJob extends ProcessWebhookJob
 
     public function handle()
     {
-        ray('in handle webhook');
-
         event("github-webhooks::{$this->webhookCall->eventActionName()}", $this->webhookCall);
-ray($this->webhookCall->eventActionName())->blue();
+
         collect(config('github-webhooks.jobs'))
             ->filter(function (string $jobClassName, $eventActionName) {
                 return in_array($eventActionName, [
@@ -24,7 +22,6 @@ ray($this->webhookCall->eventActionName())->blue();
                 ]);
             })
             ->filter()
-            ->ray()
             ->each(function (string $jobClassName) {
                 if (! class_exists($jobClassName)) {
                     throw WebhookFailed::jobClassDoesNotExist($jobClassName, $this->webhookCall);
