@@ -369,9 +369,6 @@ If you discover any security related issues, please email freek@spatie.be instea
 - [Freek Van der Herten](https://github.com/freekmurze)
 - [All Contributors](../../contributors)
 
-A big thank you to [Sebastiaan Luca](https://twitter.com/sebastiaanluca) who generously shared his GitHub webhook
-solution that inspired this package.
-
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
