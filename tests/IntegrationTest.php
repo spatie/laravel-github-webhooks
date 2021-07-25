@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Route;
 use Spatie\GitHubWebhooks\Exceptions\JobClassDoesNotExist;
 use Spatie\GitHubWebhooks\Tests\TestClasses\HandleAllIssuesWebhookJob;
 use Spatie\GitHubWebhooks\Tests\TestClasses\HandleIssueClosedWebhookJob;
@@ -43,7 +43,7 @@ it('will not accept a webhook with an invalid signature', function () {
         ->assertForbidden();
 });
 
-it('will dispatch a single job when it matches the event name', function() {
+it('will dispatch a single job when it matches the event name', function () {
     config()->set('github-webhooks.jobs', [
         'issues' => HandleAllIssuesWebhookJob::class,
         'issue.created' => HandleIssueCreatedWebhookJob::class,
@@ -63,7 +63,7 @@ it('will dispatch a single job when it matches the event name', function() {
     Bus::assertNotDispatched(HandleAllIssuesWebhookJob::class);
 });
 
-it('will dispatch a both the event job and eventAction job when it matches the eventAction name', function() {
+it('will dispatch a both the event job and eventAction job when it matches the eventAction name', function () {
     config()->set('github-webhooks.jobs', [
         'issues' => HandleAllIssuesWebhookJob::class,
         'issues.created' => HandleIssueCreatedWebhookJob::class,
@@ -86,7 +86,7 @@ it('will dispatch a both the event job and eventAction job when it matches the e
     Bus::assertNotDispatched(HandleIssueClosedWebhookJob::class);
 });
 
-it('will throw an exception when a non-existing job class is used', function() {
+it('will throw an exception when a non-existing job class is used', function () {
     $this->withoutExceptionHandling();
 
     config()->set('github-webhooks.jobs', [
