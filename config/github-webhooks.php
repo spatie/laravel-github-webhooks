@@ -1,7 +1,7 @@
 <?php
 
 use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
-use Spatie\GitHubWebhooks\ProcessGitHubWebhookJob;
+use Spatie\GitHubWebhooks\Jobs\ProcessGitHubWebhookJob;
 use Spatie\WebhookClient\WebhookProfile\ProcessEverythingWebhookProfile;
 
 return [

@@ -1,10 +1,15 @@
 <?php
 
-namespace Spatie\GitHubWebhooks;
+namespace Spatie\GitHubWebhooks\Jobs;
 
+use Spatie\GitHubWebhooks\Exceptions\JobClassDoesNotExist;
 use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
+use Spatie\WebhookClient\Exceptions\InvalidConfig;
 use Spatie\WebhookClient\Models\WebhookCall;
 use Spatie\WebhookClient\ProcessWebhookJob;
+use function collect;
+use function dispatch;
+use function event;
 
 class ProcessGitHubWebhookJob extends ProcessWebhookJob
 {
@@ -22,9 +27,10 @@ class ProcessGitHubWebhookJob extends ProcessWebhookJob
                 ]);
             })
             ->filter()
+            ->ray()
             ->each(function (string $jobClassName) {
                 if (! class_exists($jobClassName)) {
-                    throw WebhookFailed::jobClassDoesNotExist($jobClassName, $this->webhookCall);
+                    throw JobClassDoesNotExist::make($jobClassName);
                 }
             })
             ->each(fn (string $jobClassName) => dispatch(new $jobClassName($this->webhookCall)));

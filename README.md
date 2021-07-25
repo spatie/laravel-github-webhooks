@@ -76,7 +76,7 @@ This is the contents of the config file that will be published at `config/github
 
 ```php
 use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
-use Spatie\GitHubWebhooks\ProcessGitHubWebhookJob;
+use Spatie\GitHubWebhooks\Jobs\ProcessGitHubWebhookJob;
 use Spatie\WebhookClient\WebhookProfile\ProcessEverythingWebhookProfile;
 
 return [
@@ -293,7 +293,7 @@ of failure, like this:
 
 ```php
 use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
-use Spatie\GitHubWebhooks\ProcessGitHubWebhookJob;
+use Spatie\GitHubWebhooks\Jobs\ProcessGitHubWebhookJob;
 
 dispatch(new ProcessGitHubWebhookJob(GitHubWebhookCall::find($id)));
 ```
@@ -307,7 +307,7 @@ class should extend `Spatie\GitHubWebhooks\ProcessGitHubWebhookJob`.
 Here's an example:
 
 ```php
-use Spatie\GitHubWebhooks\ProcessGitHubWebhookJob;
+use Spatie\GitHubWebhooks\Jobs\ProcessGitHubWebhookJob;
 
 class MyCustomGitHubWebhookJob extends ProcessGitHubWebhookJob
 {
