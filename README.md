@@ -240,9 +240,9 @@ by `_`. The value should be the fully qualified classname.
 
 The `Spatie\GitHubWebhooks\Models\GitHubWebhookCall` model contains some handy methods:
 
-- `payload()`: returns the payload of the webhook as an array
 - `headers()`: returns an instance of `Symfony\Component\HttpFoundation\HeaderBag` containing all headers used on the request
 - `eventActionName()`: returns the event name and action name of a webhooks, for example `issues.opened`
+- `payload($key = null)`: returns the payload of the webhook as an array. Optionally, you can pass a key in the payload which value you needed. For deeply nested values you can use dot notation (example `$githubWebhookCall->payload('issue.user.login');`).
 
 ### Handling webhook requests using events
 
