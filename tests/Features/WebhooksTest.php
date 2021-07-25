@@ -137,12 +137,12 @@ it('will throw an exception when a non-existing job class is used', function () 
     $this->postJson('webhooks', $payload, addSignature($payload, $headers));
 })->throws(JobClassDoesNotExist::class);
 
-it('will store a model on a successful webhook request', function() {
+it('will store a model on a successful webhook request', function () {
     $headers = ['X-GitHub-Event' => 'issues'];
 
     $payload = preparePayload([
         'action' => 'opened',
-        'deeply' => ['nested' => 'value']
+        'deeply' => ['nested' => 'value'],
     ]);
 
     $this
@@ -158,12 +158,9 @@ it('will store a model on a successful webhook request', function() {
     expect($gitHubWebhookCall->eventName())->toBe('issues');
     expect($gitHubWebhookCall->payload())->toBe([
         'action' => 'opened',
-        'deeply' => ['nested' => 'value']
+        'deeply' => ['nested' => 'value'],
     ]);
     expect($gitHubWebhookCall->payload('deeply.nested'))->toBe('value');
     expect($gitHubWebhookCall->headers())->toBeInstanceOf(HeaderBag::class);
     expect($gitHubWebhookCall->headers()->get('X-GitHub-Event'))->toBe('issues');
-
-
 });
-
