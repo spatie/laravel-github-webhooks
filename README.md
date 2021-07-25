@@ -137,7 +137,7 @@ at [the webhook configuration settings on the GitHub dashboard](https://dashboar
 Next, you must publish the migration with:
 
 ```bash
-php artisan vendor:publish --provider="Spatie\WebhookClient\WebhookClientServiceProvider" --tag="github-webhooks-migrations"
+php artisan vendor:publish --provider="Spatie\GitHubWebhooks\GitHubWebhooksServiceProvider" --tag="github-webhooks-migrations"
 ```
 
 After the migration has been published, you can create the `github_webhook_calls` table by running the migrations:
