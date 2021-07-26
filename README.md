@@ -163,7 +163,7 @@ Route::githubWebhooks('webhook-route-configured-at-the-github-webhooks-settings'
 Behind the scenes this macro will register a `POST` route to a controller provided by this package. We recommend to put it in the `api.php` routes file, so no session is created when a webhook comes in, and no CSRF token is needed.
 
 
-Should you, for any reason, have to register the route in your web.php routes file, then you must add that route to the `except` array of the `VerifyCsrfToken` middleware:
+Should you, for any reason, have to register the route in your `web.php` routes file, then you must add that route to the `except` array of the `VerifyCsrfToken` middleware:
 
 ```php
 protected $except = [
@@ -229,14 +229,15 @@ We highly recommend that you make this job queueable, because this will minimize
 requests. This allows you to handle more GitHub webhook requests and avoid timeouts.
 
 After having created your job you must register it at the `jobs` array in the `github-webhooks.php` config file. The key
-should be the name of [the github event type](https://docs.github.com/en/developers/webhooks-and-events/events/github-event-types) where but with the `.` replaced
-by `_`. The value should be the fully qualified classname.
+should be the name of [the GitHub event type](https://docs.github.com/en/developers/webhooks-and-events/events/github-event-types). Optionally, you can let it follow with a dot and the value that is in the action key of the payload of a event.
 
 ```php
 // config/github-webhooks.php
 
 'jobs' => [
-    'issues.opened' => \App\Jobs\GitHubWebhooks\HandleIssueOpenedWebhookJob::class,
+    'issues.opened' => \App\Jobs\GitHubWebhooks\HandleIssueOpenedWebhookJob::class, // will be called when issues are opened
+    'issues' => \App\Jobs\GitHubWebhooks\HandleIssuesWebhookJob::class, // will be called when issues are opened, created, deleted, ...
+    '*' => \App\Jobs\GitHubWebhooks\HandleAllWebhooksJob::class, // will be called when any event/action comes in
 ],
 ```
 
