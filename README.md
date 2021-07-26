@@ -223,7 +223,7 @@ We highly recommend that you make this job queueable, because this will minimize
 requests. This allows you to handle more GitHub webhook requests and avoid timeouts.
 
 After having created your job you must register it at the `jobs` array in the `github-webhooks.php` config file. The key
-should be the name of [the github event type](https://github.com/docs/api#event_types) where but with the `.` replaced
+should be the name of [the github event type](https://docs.github.com/en/developers/webhooks-and-events/events/github-event-types) where but with the `.` replaced
 by `_`. The value should be the fully qualified classname.
 
 ```php
