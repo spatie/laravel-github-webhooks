@@ -45,6 +45,10 @@ class HandleIssueOpenedWebhookJob implements ShouldQueue
 Before using this package we highly recommend
 reading [the entire documentation on webhooks over at GitHub](https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks).
 
+## Are you a visual learner?
+
+In [this stream on YouTube](https://www.youtube.com/watch?v=BKJbd-VlV88), I show how to use package, go over the source code, and explain how the package is tested.
+
 ## Support us
 
 [<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-github-webhooks.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-github-webhooks)
@@ -155,8 +159,11 @@ to the `Route::githubWebhooks` route macro:
 Route::githubWebhooks('webhook-route-configured-at-the-github-webhooks-settings');
 ```
 
-Behind the scenes this macro will register a `POST` route to a controller provided by this package. Because GitHub has no way
-of getting a csrf-token, you must add that route to the `except` array of the `VerifyCsrfToken` middleware:
+
+Behind the scenes this macro will register a `POST` route to a controller provided by this package. We recommend to put it in the `api.php` routes file, so no session is created when a webhook comes in, and no CSRF token is needed.
+
+
+Should you, for any reason, have to register the route in your web.php routes file, then you must add that route to the `except` array of the `VerifyCsrfToken` middleware:
 
 ```php
 protected $except = [
@@ -180,8 +187,7 @@ webhook is saved.
 
 If the signature is not valid, the request will not be logged in the `github_webhook_calls` table but
 a `Spatie\GitHubWebhooks\WebhookFailed` exception will be thrown. If something goes wrong during the webhook request the
-thrown exception will be saved in the `exception` column. In that case the controller will send a `500` instead of `200`
-.
+thrown exception will be saved in the `exception` column. In that case the controller will send a `500` instead of `200`.
 
 There are two ways this package enables you to handle webhook requests: you can opt to queue a job or listen to the
 events the package will fire.
