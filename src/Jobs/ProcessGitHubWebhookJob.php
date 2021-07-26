@@ -29,7 +29,6 @@ class ProcessGitHubWebhookJob extends ProcessWebhookJob
                     $this->webhookCall->eventActionName(),
                 ]);
             })
-            ->filter()
             ->each(function (string $jobClassName) {
                 if (! class_exists($jobClassName)) {
                     throw JobClassDoesNotExist::make($jobClassName);
