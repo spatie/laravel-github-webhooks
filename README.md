@@ -1,4 +1,4 @@
-# Handle GitHub Webhooks in a Laravel application
+# Handle GitHub webhooks in a Laravel application
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-github-webhooks.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-github-webhooks)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/spatie/laravel-github-webhooks/run-tests?label=tests)
