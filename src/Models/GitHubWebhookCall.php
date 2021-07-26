@@ -15,7 +15,7 @@ class GitHubWebhookCall extends WebhookCall
 
     public function eventName(): string
     {
-        return $this->headerBag()->get('X-GitHub-Event') ?? '';
+        return $this->headerBag()->get('X-GitHub-Event');
     }
 
     public function eventActionName(): string
