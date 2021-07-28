@@ -27,7 +27,7 @@ beforeEach(function () {
 it('will accept a webhook with a valid signature', function () {
     $headers = ['X-GitHub-Event' => 'issues'];
 
-    $payload = preparePayload(['a' => 1]);
+    $payload = ['a' => 1];
 
     $this
         ->postJson('webhooks', $payload, addSignature($payload, $headers))
@@ -40,7 +40,7 @@ it('will not accept a webhook with an invalid signature', function () {
         'X-Hub-Signature-256' => 'invalid-signature',
     ];
 
-    $payload = preparePayload(['a' => 1]);
+    $payload = ['a' => 1];
 
     $this
         ->postJson('webhooks', $payload, $headers)
@@ -55,7 +55,7 @@ it('will accept a webhook with an invalid signature when validation is turned of
         'X-Hub-Signature-256' => 'invalid-signature',
     ];
 
-    $payload = preparePayload(['a' => 1]);
+    $payload = ['a' => 1];
 
     $this
         ->postJson('webhooks', $payload, $headers)
@@ -71,7 +71,7 @@ it('will dispatch a single job when it matches the event name', function () {
 
     $headers = ['X-GitHub-Event' => 'ping'];
 
-    $payload = preparePayload([]);
+    $payload = [];
 
     $this
         ->postJson('webhooks', $payload, addSignature($payload, $headers))
@@ -113,7 +113,7 @@ it('offers a wildcard to process all webhooks', function () {
 
     $headers = ['X-GitHub-Event' => 'ping'];
 
-    $payload = preparePayload([]);
+    $payload = [];
 
     $this
         ->postJson('webhooks', $payload, addSignature($payload, $headers))
