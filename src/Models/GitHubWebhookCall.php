@@ -31,13 +31,11 @@ class GitHubWebhookCall extends WebhookCall
 
     public function payload(string $key = null): mixed
     {
-        $payload = json_decode($this->payload['payload'], true);
-
         if (! is_null($key)) {
-            return Arr::get($payload, $key);
+            return Arr::get($this->payload, $key);
         }
 
-        return $payload;
+        return $this->payload;
     }
 
     public function prunable(): Builder

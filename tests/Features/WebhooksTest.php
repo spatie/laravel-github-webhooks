@@ -93,7 +93,7 @@ it('will dispatch a both the event job and eventAction job when it matches the e
 
     $headers = ['X-GitHub-Event' => 'issues'];
 
-    $payload = preparePayload(['action' => 'created']);
+    $payload = ['action' => 'created'];
 
     $this
         ->postJson('webhooks', $payload, addSignature($payload, $headers))
@@ -132,7 +132,7 @@ it('will throw an exception when a non-existing job class is used', function () 
 
     $headers = ['X-GitHub-Event' => 'issues'];
 
-    $payload = preparePayload(['action' => 'created']);
+    $payload = ['action' => 'created'];
 
     $this->postJson('webhooks', $payload, addSignature($payload, $headers));
 })->throws(JobClassDoesNotExist::class);
@@ -140,10 +140,10 @@ it('will throw an exception when a non-existing job class is used', function () 
 it('will store a model on a successful webhook request', function () {
     $headers = ['X-GitHub-Event' => 'issues'];
 
-    $payload = preparePayload([
+    $payload = [
         'action' => 'opened',
         'deeply' => ['nested' => 'value'],
-    ]);
+    ];
 
     $this
         ->postJson('webhooks', $payload, addSignature($payload, $headers))
