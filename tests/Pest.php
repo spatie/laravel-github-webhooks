@@ -16,8 +16,3 @@ function addSignature(array $payload = [], array $headers = []): array
 
     return $headers;
 }
-
-function preparePayload(array $payload): array
-{
-    return ['payload' => json_encode($payload)];
-}

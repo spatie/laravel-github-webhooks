@@ -159,6 +159,8 @@ to the `Route::githubWebhooks` route macro:
 Route::githubWebhooks('webhook-route-configured-at-the-github-webhooks-settings');
 ```
 
+Make sure when configuring the webhook url that the webhooks are send as `application/json` and not as `application/x-www-form-urlencoded`.
+
 
 Behind the scenes this macro will register a `POST` route to a controller provided by this package. We recommend to put it in the `api.php` routes file, so no session is created when a webhook comes in, and no CSRF token is needed.
 
