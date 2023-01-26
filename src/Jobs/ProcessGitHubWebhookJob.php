@@ -5,6 +5,7 @@ namespace Spatie\GitHubWebhooks\Jobs;
 use function collect;
 use function dispatch;
 use function event;
+
 use Spatie\GitHubWebhooks\Exceptions\JobClassDoesNotExist;
 use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
 use Spatie\WebhookClient\Jobs\ProcessWebhookJob;

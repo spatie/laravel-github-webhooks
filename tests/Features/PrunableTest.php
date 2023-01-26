@@ -1,6 +1,7 @@
 <?php
 
 use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
+
 use function Spatie\PestPluginTestTime\testTime;
 
 it('will prune records after the configured amount of days', function () {
