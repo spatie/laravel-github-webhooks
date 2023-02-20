@@ -3,14 +3,14 @@
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpFoundation\HeaderBag;
-use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
 use Spatie\GitHubWebhooks\Exceptions\JobClassDoesNotExist;
-use Spatie\GitHubWebhooks\Tests\TestClasses\HandleAllWebhooksJob;
-use Spatie\GitHubWebhooks\Tests\TestClasses\HandlePingWebhookJob;
+use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
 use Spatie\GitHubWebhooks\Tests\TestClasses\HandleAllIssuesWebhookJob;
+use Spatie\GitHubWebhooks\Tests\TestClasses\HandleAllWebhooksJob;
 use Spatie\GitHubWebhooks\Tests\TestClasses\HandleIssueClosedWebhookJob;
 use Spatie\GitHubWebhooks\Tests\TestClasses\HandleIssueCreatedWebhookJob;
+use Spatie\GitHubWebhooks\Tests\TestClasses\HandlePingWebhookJob;
+use Symfony\Component\HttpFoundation\HeaderBag;
 
 beforeEach(function () {
     Route::githubWebhooks('webhooks');
