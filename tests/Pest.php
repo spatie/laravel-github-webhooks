@@ -2,9 +2,7 @@
 
 use Spatie\GitHubWebhooks\Tests\TestCase;
 
-uses(TestCase::class)
-    ->beforeEach(fn () => ray()->newScreen($this->getName()))
-    ->in(__DIR__);
+uses(TestCase::class)->in(__DIR__);
 
 function addSignature(array $payload = [], array $headers = []): array
 {
