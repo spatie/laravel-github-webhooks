@@ -3,7 +3,6 @@
 namespace Spatie\GitHubWebhooks\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Spatie\GitHubWebhooks\GitHubSignatureValidator;
 use Spatie\WebhookClient\Exceptions\InvalidWebhookSignature;
 use Spatie\WebhookClient\WebhookConfig;
