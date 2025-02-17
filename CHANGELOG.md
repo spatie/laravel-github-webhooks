@@ -2,6 +2,19 @@
 
 All notable changes to `laravel-github-webhooks` will be documented in this file.
 
+## 1.2.4 - 2025-02-17
+
+### What's Changed
+
+* Add missing use statement for `Schema` by @nhedger in https://github.com/spatie/laravel-github-webhooks/pull/11
+* Laravel 12.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-github-webhooks/pull/13
+
+### New Contributors
+
+* @nhedger made their first contribution in https://github.com/spatie/laravel-github-webhooks/pull/11
+
+**Full Changelog**: https://github.com/spatie/laravel-github-webhooks/compare/1.2.3...1.2.4
+
 ## 1.2.3 - 2024-03-07
 
 ### What's Changed
