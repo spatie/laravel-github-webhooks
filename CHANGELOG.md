@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-github-webhooks` will be documented in this file.
 
+## 1.3.0 - 2026-03-06
+
+### What's Changed
+
+- Laravel 13.x Compatibility
+
 ## 1.2.4 - 2025-02-17
 
 ### What's Changed
