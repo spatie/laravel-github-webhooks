@@ -27,8 +27,6 @@ class HandleIssueOpenedWebhookJob implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
-    public GitHubWebhookCall $gitHubWebhookCall;
-
     public function __construct(
         public GitHubWebhookCall $webhookCall
     ) {}
@@ -211,8 +209,6 @@ use Spatie\GitHubWebhooks\Models\GitHubWebhookCall;
 class HandleIssueOpenedWebhookJob implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
-
-    public GitHubWebhookCall $gitHubWebhookCall;
 
     public function __construct(
         public GitHubWebhookCall $webhookCall
