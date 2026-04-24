@@ -29,7 +29,7 @@ class GitHubWebhookCall extends WebhookCall
         return "{$this->eventName()}.$actionName";
     }
 
-    public function payload(string $key = null): mixed
+    public function payload(?string $key = null): mixed
     {
         if (! is_null($key)) {
             return Arr::get($this->payload, $key);
