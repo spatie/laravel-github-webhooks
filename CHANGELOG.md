@@ -2,6 +2,19 @@
 
 All notable changes to `laravel-github-webhooks` will be documented in this file.
 
+## 1.3.1 - 2026-04-24
+
+### What's Changed
+
+* Remove duplicate property in documentation by @lode in https://github.com/spatie/laravel-github-webhooks/pull/16
+* Fix implicit nullable by @lode in https://github.com/spatie/laravel-github-webhooks/pull/17
+
+### New Contributors
+
+* @lode made their first contribution in https://github.com/spatie/laravel-github-webhooks/pull/16
+
+**Full Changelog**: https://github.com/spatie/laravel-github-webhooks/compare/1.3.0...1.3.1
+
 ## 1.3.0 - 2026-03-06
 
 ### What's Changed
