@@ -49,7 +49,7 @@ In [this stream on YouTube](https://www.youtube.com/watch?v=BKJbd-VlV88), I show
 
 ## Support us
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-github-webhooks.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-github-webhooks)
+[<img src="https://spatie.be/github-ad-image/laravel-github-webhooks.jpg" width="419px" />](https://spatie.be/github-ad-click/laravel-github-webhooks)
 
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can
 support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
